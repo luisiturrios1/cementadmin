@@ -3,8 +3,7 @@ services:
   wsgi-server:
     build:
       context: .
-      dockerfile: etc/wsgi-server/Dockerfile
-    container_name: wsgi-server
+      dockerfile: etc/wsgi-server/Dockerfile    
     restart: on-failure
     ports:
       - 3034:3031
