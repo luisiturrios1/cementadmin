@@ -1,0 +1,43 @@
+{% extends 'cementerio/base.html' %}
+{% load humanize %}
+{% load bootstrap3 %}
+
+{% block main %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'cementerio:inicio' %}">Inicio</a></li>
+        <li class="breadcrumb-item">Difuntos</li>
+        <li class="breadcrumb-item active">{{ object }}</li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <form role="form" method="post" action="" enctype="multipart/form-data"
+                              accept-charset="UTF-8">
+                            {% csrf_token %}
+                            <div class="card-header">
+                                <strong><i class="icon-directions"></i> Actualizar</strong> {{ terreno }}
+                            </div>
+                            <div class="card-body">
+                                {% bootstrap_messages %}
+                                {% bootstrap_form form %}
+                                <p>Formato fecha: dd/mm/AAAA</p>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i>
+                                    Actualizar
+                                </button>
+                                <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Limpiar
+                                </button>
+                                <a class="btn btn-sm btn-secondary" href="{% url 'cementerio:difuntosdetalle' pk=object.pk %}">
+                                    Cancelar
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

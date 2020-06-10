@@ -1,0 +1,64 @@
+{% extends 'cementerio/base.html' %}
+{% load humanize %}
+
+{% block main %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active"><a href="{% url 'cementerio:inicio' %}">Inicio</a></li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="h1 text-muted text-right mb-4">
+                                    <a href="{% url 'cementerio:clientes' %}"><i class="icon-people"></i></a>
+                                </div>
+                                <div class="h4 mb-0">{{ clientes|intcomma }}</div>
+                                <small class="text-muted text-uppercase font-weight-bold">Clientes</small>
+                                <div class="progress progress-xs mt-3 mb-0">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%"
+                                         aria-valuenow="100"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="h1 text-muted text-right mb-4">
+                                    <a href="{% url 'cementerio:terrenos' %}"><i class="icon-directions"></i></a>
+                                </div>
+                                <div class="h4 mb-0">{{ terrenos|intcomma }}</div>
+                                <small class="text-muted text-uppercase font-weight-bold">Terrenos vendidos</small>
+                                <div class="progress progress-xs mt-3 mb-0">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 100%"
+                                         aria-valuenow="100"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="h1 text-muted text-right mb-4">
+                                    <a href="{% url 'cementerio:difuntos' %}"><i class="icon-ghost"></i></a>
+                                </div>
+                                <div class="h4 mb-0">{{ difuntos|intcomma }}</div>
+                                <small class="text-muted text-uppercase font-weight-bold">Difuntos</small>
+                                <div class="progress progress-xs mt-3 mb-0">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                                         aria-valuenow="100"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.conainer-fluid -->
+
+{% endblock %}

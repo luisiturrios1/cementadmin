@@ -1,0 +1,71 @@
+{% extends 'cementerio/base.html' %}
+{% load humanize %}
+
+{% block main %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'cementerio:inicio' %}">Inicio</a></li>
+    <li class="breadcrumb-item">Difuntos</li>
+    <li class="breadcrumb-item active">{{ difunto.nombre }}</li>
+</ol>
+<div class="container-fluid">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Difunto</strong> {{ difunto.nombre }}
+                    </div>
+                    <div class="card-body">
+                        <p><strong>N. Difunto:</strong> {{ difunto.pk }}</p>
+
+                        <p>
+                            <strong>Nombre:</strong> {{ difunto.nombre|default:'' }} {{ difunto.apellido|default:'' }}
+                        </p>
+                        <p><strong>Fecha Fallecido:</strong> {{ difunto.fecha_fallecimiento|default:'' }}</p>
+                        <p><strong>Terreno:</strong> <a
+                                href="{% url 'cementerio:terrenosdetalle' pk=difunto.terreno.pk %}">{{ difunto.terreno|default:'' }}</a>
+                        </p>
+                        <p><strong>Creado por :</strong> {{ difunto.creado_por.email|default:'No encontrado' }}</p>
+
+                        {% if perms.cementerio.change_difunto %}
+                        <p>
+                            <a href="{% url 'cementerio:difuntosmodificar' pk=difunto.pk %}"
+                                class="btn btn-primary">Actualizar</a>
+                        </p>
+                        {% endif %}
+                        {% if perms.cementerio.delete_difunto %}
+                        <p>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dangerModal">
+                                <i class="icon-trash"></i> Eliminar
+                            </button>
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="dangerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-danger" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">¿Realmente desea eliminar?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Realmente desea eliminar {{ difunto }}?</p>                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <form method="post" action="{% url 'cementerio:difuntoseliminar' pk=difunto.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger"><i class="icon-trash"></i> Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

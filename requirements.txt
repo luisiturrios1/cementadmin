@@ -1,0 +1,9 @@
+Django==1.11.3
+pytz==2017.2
+django-bootstrap3==9.0.0
+mysqlclient==1.4.2.post1
+django-import-export==1.2.0
+tablib==0.12.1
+uWSGI==2.0.18
+boto3==1.13.25
+pycurl==7.43.0.5

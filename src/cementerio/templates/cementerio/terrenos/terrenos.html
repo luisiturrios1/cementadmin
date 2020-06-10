@@ -1,0 +1,88 @@
+{% extends 'cementerio/base.html' %}
+{% load humanize %}
+
+{% block main %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'cementerio:inicio' %}">Inicio</a></li>
+        <li class="breadcrumb-item active">Terrenos</li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <form class="col-12">                        
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>Buscar</strong> Terrreno
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="manzana">Manzana</label>
+                                                <input type="text" class="form-control" name="manzana" placeholder="Manzana">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="columna">Columna</label>
+                                                <input type="text" class="form-control" name="columna" placeholder="Columna">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="lote">Lote</label>
+                                                <input type="text" class="form-control" name="lote" placeholder="Lote">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-10">                                            
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa fa-search"></i> Buscar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                        
+                </form>
+            </div>            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="icon-directions"></i> Terrenos
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>N. Terreno</th>
+                                    <th>Cliente</th>
+                                    <th>Difuntos</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for terreno in terrenos %}
+                                    <tr>
+                                        <td><a href="{% url 'cementerio:terrenosdetalle' pk=terreno.pk %}">{{ terreno }}</a></td>
+                                        <td>{{ terreno.cliente }}</td>
+                                        <td>
+                                            {% for difunto in terreno.difuntos.all %}
+                                                <a href="{% url 'cementerio:difuntosdetalle' pk=difunto.pk %}">{{ difunto }}</a>
+                                            {% endfor %}
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

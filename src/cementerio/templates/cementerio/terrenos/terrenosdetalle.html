@@ -1,0 +1,122 @@
+{% extends 'cementerio/base.html' %}
+{% load humanize %}
+
+{% block main %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'cementerio:inicio' %}">Inicio</a></li>
+    <li class="breadcrumb-item">Terrenos</li>
+    <li class="breadcrumb-item active">{{ terreno }}</li>
+</ol>
+<div class="container-fluid">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong><i class="icon-directions"></i> Terreno</strong> {{ terreno }}
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Tipo:</strong> {{ terreno.get_tipo_display }}</p>
+
+                        <p><strong>Capacidad :</strong> {{ terreno.capacidad }} cuerpos</p>
+
+                        <p>
+                            <strong>Manzana: </strong> {{ terreno.manzana }}
+                            <strong>columna: </strong> {{ terreno.columna }}
+                            <strong>lote :</strong> {{ terreno.lote }}
+                        </p>
+
+                        <p>
+                            <strong>Cliente :</strong>
+                            <a href="{% url 'cementerio:clientesdetalle' pk=terreno.cliente.pk %}">
+                                {{ terreno.cliente }}
+                            </a>
+                        </p>
+
+                        <p><strong>Notas :</strong> {{ terreno.beneficiario | default:'' }}</p>
+
+                        <p><strong>Fecha de registro:</strong> {{ terreno.fecha_regitro }}</p>
+
+                        <p><strong>Creado por :</strong> {{ terreno.creado_por.email|default:'No encontrado' }}</p>
+
+                        {% if perms.cementerio.change_terreno %}
+                        <p>
+                            <a href="{% url 'cementerio:terrenosmodificar' pk=terreno.pk %}"
+                                class="btn btn-primary">Actualizar</a>
+                        </p>
+                        {% endif %}
+
+                        {% if perms.cementerio.delete_terreno %}
+                        <p>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dangerModal">
+                                <i class="icon-trash"></i> Eliminar
+                            </button>
+                        </p>
+                        {% endif %}
+                            
+                        {% if perms.cementerio.add_difunto %}
+                        <p>
+                            <a href="{% url 'cementerio:terrenosagregardifunto' pk=terreno.pk %}"
+                                class="btn btn-primary">Agregar difunto</a>
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="icon-directions"></i> Difuntos
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Fecha Fallecido</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for difunto in terreno.difuntos.all %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'cementerio:difuntosdetalle' pk=difunto.pk %}">{{ difunto }}</a>
+                                    </td>
+                                    <td>{{ difunto.fecha_fallecimiento|default:'' }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="dangerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-danger" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">¿Realmente desea eliminar?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Realmente desea eliminar {{ terreno }}?</p>
+
+                <p>Esto eliminara los elementos asociados a este terreno</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <form method="post" action="{% url 'cementerio:terrenoseliminar' pk=terreno.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger"><i class="icon-trash"></i> Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

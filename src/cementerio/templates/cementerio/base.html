@@ -1,0 +1,81 @@
+{% load staticfiles %}<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>CementAdmin</title>
+    <!-- Icons -->
+    <link href="{% static 'cementerio/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'cementerio/css/simple-line-icons.css' %}" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="{% static 'cementerio/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+<header class="app-header navbar">
+    <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">
+        <img class="navbar-brand-full" src="{% static 'cementerio/img/logo.png' %}" width="89" height="25"
+             alt="EnRenta">
+        <img class="navbar-brand-minimized" src="{% static 'cementerio/img/logo.png' %}" width="30" height="30"
+             alt="EnRenta">
+    </a>
+    <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</header>
+<div class="app-body">
+
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cementerio:inicio' %}"><i class="icon-speedometer"></i> Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cementerio:clientes' %}"><i class="icon-people"></i> Clientes </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cementerio:terrenos' %}"><i class="icon-directions"></i> Terrenos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cementerio:difuntos' %}"><i class="icon-ghost"></i> Difuntos </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}"><i class="icon-logout"></i> Salir
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+    </div>
+
+    <!-- Main content -->
+    <main class="main">
+        {% block main %}{% endblock %}
+    </main>
+</div>
+
+<footer class="app-footer">
+    <a href="#">CementAdmin</a> 2017 Derechos reservados.
+        <span class="float-right">Powered by <a href="#">Luis Iturrios</a>
+        </span>
+</footer>
+<script src="{% static 'cementerio/js/jquery.js' %}"></script>
+<script src="{% static 'cementerio/js/popper.js' %}"></script>
+<script src="{% static 'cementerio/js/bootstrap.js' %}"></script>
+<script src="{% static 'cementerio/js/toastr.min.js' %}"></script>
+<script src="{% static 'cementerio/js/pace.js' %}"></script>
+<script src="{% static 'cementerio/js/perfect-scrollbar.js' %}"></script>
+<script src="{% static 'cementerio/js/coreui.js' %}"></script>
+<script src="{% static 'cementerio/js/app.js' %}"></script>
+</body>
+
+</html>

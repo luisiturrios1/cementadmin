@@ -1,0 +1,45 @@
+{% load staticfiles %}<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keyword" content="CementAdmin Login">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>CementeAdmin LogOut</title>
+
+    <link href="{% static 'cementerio/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'cementerio/css/simple-line-icons.css' %}" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="{% static 'cementerio/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="app flex-row align-items-center">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card-group mb-0">
+                <div class="card p-4">
+                    <div class="card-block">
+                        <h1>Logged out!</h1>
+
+                        <a class="btn btn-default" href="{% url 'login'%}">Click here to login again.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="{% static 'cementerio/bower_components/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'cementerio/bower_components/tether/dist/js/tether.min.js' %}"></script>
+<script src="{% static 'cementerio/bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+{% load staticfiles %}<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keyword" content="CementAdmin Login">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>CementeAdmin Login</title>
+
+    <link href="{% static 'cementerio/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'cementerio/css/simple-line-icons.css' %}" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="{% static 'cementerio/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="app flex-row align-items-center">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card-group mb-0">
+                <div class="card p-4">
+                    <div class="card-block">
+                        <h1>Login</h1>
+
+                        <form method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <p class="text-muted">Sign In to your account</p>
+                            {% if form.errors %}
+                                <p>{{ form.errors }}</p>
+                            {% endif %}
+                            <div class="input-group mb-3">
+                                <span class="input-group-addon"><i class="icon-user"></i>
+                                </span>
+                                <input name="username" type="text" class="form-control" placeholder="Username">
+                                {{ form.username.errors }}
+                            </div>
+                            <div class="input-group mb-4">
+                                <span class="input-group-addon"><i class="icon-lock"></i>
+                                </span>
+                                <input name="password" type="password" class="form-control" placeholder="Password">
+                                {{ form.password.errors }}
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary px-4">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="{% static 'cementerio/bower_components/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'cementerio/bower_components/tether/dist/js/tether.min.js' %}"></script>
+<script src="{% static 'cementerio/bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+
+</body>
+
+</html>

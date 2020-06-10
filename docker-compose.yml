@@ -1,0 +1,12 @@
+version: "3"
+services:
+  wsgi-server:
+    build:
+      context: .
+      dockerfile: etc/wsgi-server/Dockerfile
+    container_name: wsgi-server
+    restart: on-failure
+    ports:
+      - 3034:3031
+    volumes:
+      - ./staticfiles:/usr/src/app/staticfiles/
