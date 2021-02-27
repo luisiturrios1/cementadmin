@@ -66,6 +66,9 @@ class Terreno(models.Model):
         Site, null=False, blank=False, on_delete=models.CASCADE
     )
 
+    class Meta:
+        ordering = ['manzana', 'columna', 'lote']
+
     def __str__(self):
 
         return self.__unicode__()
