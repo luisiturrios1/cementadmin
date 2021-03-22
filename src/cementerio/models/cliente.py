@@ -35,6 +35,9 @@ class Cliente(models.Model):
         Site, null=False, blank=False, on_delete=models.CASCADE
     )
 
+    class Meta:
+        ordering = ['nombre', 'apellido']
+
     def __str__(self):
         return u'{0} {1}'.format(self.nombre, self.apellido)
 
