@@ -15,4 +15,6 @@ class ClienteForm(forms.ModelForm):
             'telefono',
             'direccion',
             'notas',
+            'beneficiario_1',
+            'beneficiario_2',
         ]

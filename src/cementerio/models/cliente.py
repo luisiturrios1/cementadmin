@@ -26,6 +26,14 @@ class Cliente(models.Model):
         verbose_name='Notas',
     )
 
+    beneficiario_1 = models.CharField(
+        max_length=200, null=True, blank=True, default=None
+    )
+
+    beneficiario_2 = models.CharField(
+        max_length=200, null=True, blank=True, default=None
+    )
+
     fecha_regitro = models.DateTimeField(auto_now_add=True)
 
     creado_por = models.ForeignKey(
@@ -53,9 +61,15 @@ class Cliente(models.Model):
 
         if self.direccion:
             self.direccion = self.direccion.upper()
-        
+
         if self.notas:
             self.notas = self.notas.upper()
+
+        if self.beneficiario_1:
+            self.beneficiario_1 = self.beneficiario_1.upper()
+
+        if self.beneficiario_2:
+            self.beneficiario_2 = self.beneficiario_2.upper()
 
         super(Cliente, self).save(force_insert,
                                   force_update, using, update_fields)

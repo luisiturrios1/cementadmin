@@ -13,6 +13,14 @@ class ClientesModificar(PermissionRequiredMixin, UpdateView):
 
     model = Cliente
 
-    fields = ['nombre', 'apellido', 'telefono', 'direccion', 'notas']
+    fields = [
+        'nombre',
+        'apellido',
+        'telefono',
+        'direccion',
+        'notas',
+        'beneficiario_1',
+        'beneficiario_2',
+    ]
 
     template_name = 'cementerio/clientes/clientesmodificar.html'

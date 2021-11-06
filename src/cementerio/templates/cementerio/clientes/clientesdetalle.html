@@ -22,12 +22,16 @@
                             <strong>Nombre:</strong> {{ cliente.nombre|default:'' }} {{ cliente.apellido|default:'' }}
                         </p>
 
-                        <p><strong>Teléfono:</strong> {{ cliente.telefono|default:'' }}</p>
+                        {% if cliente.telefono %}<p><strong>Teléfono:</strong> {{ cliente.telefono|default:'' }}</p>{% endif %}
 
-                        <p><strong>Dirección:</strong> {{ cliente.direccion|default:'' }}</p>
+                        {% if cliente.direccion %}<p><strong>Dirección:</strong> {{ cliente.direccion|default:'' }}</p>{% endif %}
 
-                        <p><strong>Notas :</strong> {{ cliente.notas | default:'' }}</p>
-
+                        {% if cliente.notas %}<p><strong>Notas :</strong> {{ cliente.notas | default:'' }}</p>{% endif %}
+                        
+                        {% if cliente.beneficiario_1 %}<p><strong>Beneficiario 1 :</strong> {{ cliente.beneficiario_1 | default:'' }}</p>{% endif %}
+                        
+                        {% if cliente.beneficiario_2 %}<p><strong>Beneficiario 2 :</strong> {{ cliente.beneficiario_2 | default:'' }}</p>{% endif %}
+                        
                         <p><strong>Fecha de registro:</strong> {{ cliente.fecha_regitro }}</p>
 
                         <p><strong>Creado por :</strong> {{ cliente.creado_por.email|default:'No encontrado' }}</p>
