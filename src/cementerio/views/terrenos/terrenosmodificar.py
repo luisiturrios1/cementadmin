@@ -13,6 +13,6 @@ class TerrenosModificar(PermissionRequiredMixin, UpdateView):
 
     model = Terreno
 
-    fields = ['beneficiario']
+    fields = ['notas']
 
     template_name = 'cementerio/terrenos/terrenosmodificar.html'

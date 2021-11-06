@@ -48,5 +48,5 @@ class ClientesAgregarTerrenoForm(forms.ModelForm):
             'manzana',
             'columna',
             'lote',
-            'beneficiario'
+            'notas'
         ]

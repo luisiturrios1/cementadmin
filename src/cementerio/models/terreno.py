@@ -47,7 +47,7 @@ class Terreno(models.Model):
         null=True, default=None, on_delete=models.CASCADE
     )
 
-    beneficiario = models.CharField(
+    notas = models.CharField(
         max_length=500, null=True, blank=True,
         verbose_name='Notas',
     )
@@ -85,9 +85,9 @@ class Terreno(models.Model):
 
         self.manzana = self.manzana.upper()
 
-        if self.beneficiario:
+        if self.notas:
 
-            self.beneficiario = self.beneficiario.upper()
+            self.notas = self.notas.upper()
 
         if self.recibo_numero:
 
