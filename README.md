@@ -1,3 +1,28 @@
 # CementAdmin
 
 Aplicación web Django para administrar cementerios
+
+### Environment Variables
+
+* `HOST_PORT` puerto a abrir por docker
+* `SERVER_HOST`
+* `SERVER_PORT`
+* `SECRET_KEY`
+* `DEBUG` 1 o 0
+* `ALLOWED_HOSTS`
+* `MARIADB_NAME`
+* `MARIADB_USER`
+* `MARIADB_PASSWORD`
+* `MARIADB_HOST`
+* `MARIADB_PORT`
+* `MARIADB_CHARSET`
+* `MARIADB_COLLATION`
+* `EMAIL_BACKEND`
+* `EMAIL_HOST`
+* `EMAIL_PORT`
+* `EMAIL_USE_TLS` 1 o 0
+* `EMAIL_HOST_USER`
+* `EMAIL_HOST_PASSWORD`
+* `DEFAULT_FROM_EMAIL`
+* `SERVER_EMAIL`
+* `ADMINS`

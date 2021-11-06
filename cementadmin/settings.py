@@ -20,12 +20,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!r##yg)37-t2-gdne9umg@=oc!a%8*%p^jm8%o5w9n7lnw1vw!'
+SECRET_KEY = os.getenv(
+    'SECRET_KEY',
+    '!r##yg)37-t2-gdne9umg@=oc!a%8*%p^jm8%o5w9n7lnw1vw!'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', '1') == '1'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '0.0.0.0').split(',')
 
 # Application definition
 INSTALLED_APPS = [
@@ -33,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sites',
-    'django.contrib.sessions',    
+    'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
@@ -82,6 +85,20 @@ DATABASES = {
     }
 }
 
+if os.getenv('MARIADB_HOST', False):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.getenv('MARIADB_NAME', 'cementadmin'),
+            'USER': os.getenv('MARIADB_USER', 'root'),
+            'PASSWORD': os.getenv('MARIADB_PASSWORD', ''),
+            'HOST': os.getenv('MARIADB_HOST', '127.0.0.1'),
+            'PORT': os.getenv('MARIADB_PORT', '3306'),
+            'CHARSET': os.getenv('MARIADB_CHARSET', 'utf8mb4'),
+            'COLLATION': os.getenv('MARIADB_COLLATION', 'utf8mb4_unicode_ci'),
+        }
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -127,7 +144,33 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+# EMAIL
+EMAIL_BACKEND = os.getenv(
+    'EMAIL_BACKEND',
+    'django.core.mail.backends.console.EmailBackend'
+)
+if os.getenv('EMAIL_HOST'):
+    EMAIL_HOST = os.getenv('EMAIL_HOST')
+
+if os.getenv('EMAIL_PORT'):
+    EMAIL_PORT = os.getenv('EMAIL_PORT')
+
+if os.getenv('EMAIL_USE_TLS'):
+    EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', '0') == '1'
+
+if os.getenv('EMAIL_HOST_USER'):
+    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+
+if os.getenv('EMAIL_HOST_PASSWORD'):
+    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+if os.getenv('DEFAULT_FROM_EMAIL'):
+    DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+
+if os.getenv('SERVER_EMAIL'):
+    SERVER_EMAIL = os.getenv('SERVER_EMAIL')
+
+ADMINS = []
+admins = os.getenv('ADMINS', '').split(',')
+for admin in admins:
+    ADMINS.append((admin, admin)) if admin != '' else None

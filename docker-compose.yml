@@ -1,11 +1,12 @@
 version: "3"
 services:
-  wsgi-server:
+  cementadmin:
     build:
       context: .
-      dockerfile: etc/wsgi-server/Dockerfile    
     restart: on-failure
+    command: uwsgi-server
     ports:
-      - 3034:3031
+      - ${HOST_PORT}:${SERVER_PORT}
     volumes:
       - ./staticfiles:/usr/src/app/staticfiles/
+    env_file: .env

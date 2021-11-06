@@ -1,6 +1,8 @@
 FROM python:2.7.16
 
 ENV PYTHONUNBUFFERED 1
+ENV SERVER_HOST 0.0.0.0
+ENV SERVER_PORT 8080
 
 WORKDIR /usr/src/app
 
@@ -8,8 +10,6 @@ COPY requirements.txt requirements.txt
 
 RUN ["pip", "install", "--no-cache-dir", "-r", "requirements.txt"]
 
-COPY ./src /usr/src/app
+COPY ./ /usr/src/app
 
-EXPOSE 3031
-
-CMD ["uwsgi", "--module", "cementadmin.wsgi:application", "--master", "--processes", "1", "--die-on-term", "--socket", "wsgi-server:3031"]
+ENTRYPOINT ["/bin/bash", "/usr/src/app/entrypoint.sh"]
