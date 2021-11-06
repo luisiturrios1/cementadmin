@@ -53,6 +53,9 @@ class Cliente(models.Model):
 
         if self.direccion:
             self.direccion = self.direccion.upper()
+        
+        if self.notas:
+            self.notas = self.notas.upper()
 
         super(Cliente, self).save(force_insert,
                                   force_update, using, update_fields)
