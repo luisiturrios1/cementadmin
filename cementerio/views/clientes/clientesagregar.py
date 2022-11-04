@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.shortcuts import HttpResponseRedirect, render
 from django.views import View
 
@@ -40,7 +40,7 @@ class ClientesAgregar(PermissionRequiredMixin, View):
 
                 return HttpResponseRedirect(reverse('cementerio:clientesdetalle', args=(cliente.pk,)))
 
-            except Exception, e:
+            except Exception as e:
 
                 form.add_error('__all__', e)
 

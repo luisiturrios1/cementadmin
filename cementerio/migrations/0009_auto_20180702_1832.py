@@ -16,11 +16,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='difunto',
             name='terreno',
-            field=models.ForeignKey(blank=True, default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='difuntos', to='cementerio.Terreno'),
+            field=models.ForeignKey(blank=True, default=None, null=True,
+                                    on_delete=django.db.models.deletion.CASCADE, related_name='difuntos', to='cementerio.Terreno'),
         ),
         migrations.AlterField(
             model_name='terreno',
             name='cliente',
-            field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='terrenos', to='cementerio.Cliente'),
+            field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE,
+                                    related_name='terrenos', to='cementerio.Cliente'),
         ),
     ]

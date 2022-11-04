@@ -18,15 +18,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Movimiento',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('concepto', models.CharField(max_length=50)),
                 ('cargo', models.DecimalField(decimal_places=2, max_digits=10)),
                 ('abono', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('saldo_anterior', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('saldo_despues', models.DecimalField(decimal_places=2, max_digits=10)),
+                ('saldo_anterior', models.DecimalField(
+                    decimal_places=2, max_digits=10)),
+                ('saldo_despues', models.DecimalField(
+                    decimal_places=2, max_digits=10)),
                 ('fecha_regitro', models.DateTimeField(auto_now_add=True)),
-                ('cliente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='movimientos', to='cementerio.Cliente')),
-                ('creado_por', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+                ('cliente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='movimientos', to='cementerio.Cliente')),
+                ('creado_por', models.ForeignKey(blank=True, null=True,
+                 on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

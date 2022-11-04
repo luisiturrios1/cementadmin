@@ -15,11 +15,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='terreno',
             name='columna',
-            field=models.PositiveIntegerField(blank=True, default=None, null=True),
+            field=models.PositiveIntegerField(
+                blank=True, default=None, null=True),
         ),
         migrations.AlterField(
             model_name='terreno',
             name='lote',
-            field=models.PositiveIntegerField(blank=True, default=None, null=True),
+            field=models.PositiveIntegerField(
+                blank=True, default=None, null=True),
         ),
     ]

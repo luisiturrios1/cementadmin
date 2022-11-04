@@ -17,4 +17,3 @@ class Migration(migrations.Migration):
             options={'ordering': ['manzana', 'columna', 'lote']},
         ),
     ]
-

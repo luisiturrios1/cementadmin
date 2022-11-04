@@ -17,19 +17,22 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='cliente',
             name='site',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='sites.Site'),
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to='sites.Site'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='difunto',
             name='site',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='sites.Site'),
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to='sites.Site'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='terreno',
             name='site',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='sites.Site'),
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to='sites.Site'),
             preserve_default=False,
         ),
     ]

@@ -15,6 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='terreno',
             name='beneficiario',
-            field=models.CharField(blank=True, max_length=500, null=True, verbose_name='Notas'),
+            field=models.CharField(
+                blank=True, max_length=500, null=True, verbose_name='Notas'),
         ),
     ]

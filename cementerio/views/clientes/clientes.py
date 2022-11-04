@@ -26,6 +26,6 @@ class Clientes(LoginRequiredMixin, View):
 
             clientes = Cliente.objects.filter(site=current_site).filter(
                 Q(nombre__icontains=q) | Q(apellido__icontains=q)
-            )        
+            )
 
         return render(request, 'cementerio/clientes/clientes.html', {'clientes': clientes})

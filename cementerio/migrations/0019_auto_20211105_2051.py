@@ -15,11 +15,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='cliente',
             name='beneficiario_1',
-            field=models.CharField(blank=True, default=None, max_length=200, null=True),
+            field=models.CharField(
+                blank=True, default=None, max_length=200, null=True),
         ),
         migrations.AddField(
             model_name='cliente',
             name='beneficiario_2',
-            field=models.CharField(blank=True, default=None, max_length=200, null=True),
+            field=models.CharField(
+                blank=True, default=None, max_length=200, null=True),
         ),
     ]

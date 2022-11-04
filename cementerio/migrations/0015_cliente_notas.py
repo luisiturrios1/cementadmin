@@ -15,6 +15,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='cliente',
             name='notas',
-            field=models.CharField(blank=True, default='', max_length=500, null=True, verbose_name='Notas'),
+            field=models.CharField(
+                blank=True, default='', max_length=500, null=True, verbose_name='Notas'),
         ),
     ]
