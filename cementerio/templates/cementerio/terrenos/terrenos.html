@@ -64,7 +64,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for terreno in terrenos %}
+                                {% for terreno in page_obj %}
                                     <tr>
                                         <td><a href="{% url 'cementerio:terrenosdetalle' pk=terreno.pk %}">{{ terreno }}</a></td>
                                         <td>{{ terreno.cliente }}</td>
@@ -79,6 +79,34 @@
 
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="card-footer">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                            Anterior
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=1">1</a>
+                                    </li>
+                                    {% endif %}
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="?page={{ page_obj.number }}">
+                                            {{ page_obj.number }}
+                                        </a>
+                                    </li>
+                                    {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                            Siguiente
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>

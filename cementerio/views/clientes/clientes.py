@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.sites.shortcuts import get_current_site
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render
 from django.views import View
@@ -28,4 +29,10 @@ class Clientes(LoginRequiredMixin, View):
                 Q(nombre__icontains=q) | Q(apellido__icontains=q)
             )
 
-        return render(request, 'cementerio/clientes/clientes.html', {'clientes': clientes})
+        paginator = Paginator(clientes, 25)
+
+        page_number = request.GET.get('page')
+
+        page_obj = paginator.get_page(page_number)
+
+        return render(request, 'cementerio/clientes/clientes.html', {'page_obj': page_obj})

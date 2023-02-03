@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.sites.shortcuts import get_current_site
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.views import View
 
@@ -34,5 +35,11 @@ class Terrenos(LoginRequiredMixin, View):
         if lote:
 
             terrenos = terrenos.filter(lote=lote)
+        
+        paginator = Paginator(terrenos, 25)
 
-        return render(request, 'cementerio/terrenos/terrenos.html', {'terrenos': terrenos})
+        page_number = request.GET.get('page')
+
+        page_obj = paginator.get_page(page_number)
+
+        return render(request, 'cementerio/terrenos/terrenos.html', {'page_obj': page_obj})
