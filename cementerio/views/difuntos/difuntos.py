@@ -20,7 +20,9 @@ class Difuntos(LoginRequiredMixin, View):
         q = request.GET.get('q', None)
 
         if q == None:
-
+            
+            q = q.upper()
+            
             difuntos = Difunto.objects.filter(site=current_site)
 
         else:

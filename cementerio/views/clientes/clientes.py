@@ -25,6 +25,8 @@ class Clientes(LoginRequiredMixin, View):
 
         else:
 
+            q = q.upper()
+
             clientes = Cliente.objects.filter(site=current_site).filter(
                 Q(nombre__icontains=q) | Q(apellido__icontains=q)
             )

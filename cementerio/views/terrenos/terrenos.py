@@ -21,6 +21,8 @@ class Terrenos(LoginRequiredMixin, View):
         manzana = request.GET.get('manzana', None)
 
         if manzana:
+            
+            manzana = manzana.upper()
 
             terrenos = terrenos.filter(manzana=manzana)
 
@@ -33,6 +35,8 @@ class Terrenos(LoginRequiredMixin, View):
         lote = request.GET.get('lote', None)
 
         if lote:
+
+            lote = lote.upper()
 
             terrenos = terrenos.filter(lote=lote)
         
