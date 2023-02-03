@@ -80,6 +80,11 @@
                                     </li>
                                     {% if page_obj.has_next %}
                                     <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.num_pages }}">
+                                            {{ page_obj.paginator.num_pages }}
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
                                         <a class="page-link" href="?page={{ page_obj.next_page_number }}">
                                             Siguiente
                                         </a>
