@@ -34,6 +34,10 @@ class Cliente(models.Model):
         max_length=200, null=True, blank=True, default=None
     )
 
+    mantenimiento = models.CharField(
+        max_length=200, null=True, blank=True, default=None
+    )
+
     fecha_regitro = models.DateTimeField(auto_now_add=True)
 
     creado_por = models.ForeignKey(
@@ -70,6 +74,9 @@ class Cliente(models.Model):
 
         if self.beneficiario_2:
             self.beneficiario_2 = self.beneficiario_2.upper()
+        
+        if self.mantenimiento:
+            self.mantenimiento = self.mantenimiento.upper()
 
         super(Cliente, self).save(force_insert,
                                   force_update, using, update_fields)

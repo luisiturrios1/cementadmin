@@ -21,6 +21,7 @@ class ClientesModificar(PermissionRequiredMixin, UpdateView):
         'notas',
         'beneficiario_1',
         'beneficiario_2',
+        'mantenimiento',
     ]
 
     template_name = 'cementerio/clientes/clientesmodificar.html'

@@ -31,6 +31,8 @@
                         {% if cliente.beneficiario_1 %}<p><strong>Beneficiario 1 :</strong> {{ cliente.beneficiario_1 | default:'' }}</p>{% endif %}
                         
                         {% if cliente.beneficiario_2 %}<p><strong>Beneficiario 2 :</strong> {{ cliente.beneficiario_2 | default:'' }}</p>{% endif %}
+
+                        {% if cliente.mantenimiento %}<p><strong>Mantenimiento :</strong> {{ cliente.mantenimiento | default:'' }}</p>{% endif %}
                         
                         <p><strong>Fecha de registro:</strong> {{ cliente.fecha_regitro }}</p>
 

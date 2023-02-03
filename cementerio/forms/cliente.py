@@ -17,4 +17,5 @@ class ClienteForm(forms.ModelForm):
             'notas',
             'beneficiario_1',
             'beneficiario_2',
+            'mantenimiento',
         ]
