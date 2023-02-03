@@ -36,7 +36,7 @@ class Terreno(models.Model):
 
     columna = models.PositiveIntegerField(null=True, blank=True, default=None)
 
-    lote = models.PositiveIntegerField(null=True, blank=True, default=None)
+    lote = models.CharField(max_length=20, null=True, blank=True)
 
     vendido = models.BooleanField(default=True, null=False, blank=False)
 
