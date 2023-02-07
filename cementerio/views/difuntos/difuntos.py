@@ -21,11 +21,11 @@ class Difuntos(LoginRequiredMixin, View):
 
         if q == None:
             
-            q = q.upper()
-            
             difuntos = Difunto.objects.filter(site=current_site)
 
         else:
+
+            q = q.upper()
 
             difuntos = Difunto.objects.filter(site=current_site).filter(
                 Q(nombre__icontains=q) | Q(apellido__icontains=q)
