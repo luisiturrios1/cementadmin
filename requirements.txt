@@ -9,3 +9,4 @@ pycurl==7.45.1
 pytz==2022.6
 tablib==3.2.1
 whitenoise==6.2.0
+newrelic
