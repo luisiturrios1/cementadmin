@@ -93,7 +93,7 @@
                                         </a>
                                     </li>
                                     <li class="page-item">
-                                        <a class="page-link" href="?page=1">1</a>
+                                        <a class="page-link" href="?page=1&lote={{ lote | default:'' | urlencode }}&columna={{ columna | default:'' | urlencode }}&manzana={{ manzana | default:'' | urlencode }}">1</a>
                                     </li>
                                     {% endif %}
                                     <li class="page-item active" aria-current="page">
@@ -103,7 +103,7 @@
                                     </li>
                                     {% if page_obj.has_next %}
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ page_obj.num_pages }}&lote={{ lote | default:'' | urlencode }}&columna={{ columna | default:'' | urlencode }}&manzana={{ manzana | default:'' | urlencode }}">
+                                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}&lote={{ lote | default:'' | urlencode }}&columna={{ columna | default:'' | urlencode }}&manzana={{ manzana | default:'' | urlencode }}">
                                             {{ page_obj.paginator.num_pages }}
                                         </a>
                                     </li>
