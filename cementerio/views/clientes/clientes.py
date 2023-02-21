@@ -37,4 +37,4 @@ class Clientes(LoginRequiredMixin, View):
 
         page_obj = paginator.get_page(page_number)
 
-        return render(request, 'cementerio/clientes/clientes.html', {'page_obj': page_obj})
+        return render(request, 'cementerio/clientes/clientes.html', {'page_obj': page_obj, 'q': q})

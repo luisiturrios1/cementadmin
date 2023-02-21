@@ -27,7 +27,7 @@
                                 <div class="col-sm-12 col-md-6">
                                     <div class="input-group">
                                         <input type="text" id="input1-group2" name="q" class="form-control"
-                                            placeholder="Nombre">
+                                            placeholder="Nombre" value="{{ q | default:'' }}">
                                         <span class="input-group-btn">
                                             <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>
                                                 Buscar
@@ -75,7 +75,7 @@
                             <ul class="pagination">
                                 {% if page_obj.has_previous %}
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}&q={{ q | default:'' | urlencode }}">
                                         Anterior
                                     </a>
                                 </li>
@@ -84,18 +84,18 @@
                                 </li>
                                 {% endif %}
                                 <li class="page-item active" aria-current="page">
-                                    <a class="page-link" href="?page={{ page_obj.number }}">
+                                    <a class="page-link" href="?page={{ page_obj.number }}&q={{ q | default:'' | urlencode }}">
                                         {{ page_obj.number }}
                                     </a>
                                 </li>
                                 {% if page_obj.has_next %}
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.num_pages }}">
+                                    <a class="page-link" href="?page={{ page_obj.num_pages }}&q={{ q | default:''| urlencode }}">
                                         {{ page_obj.paginator.num_pages }}
                                     </a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}&q={{ q | default:'' | urlencode }}">
                                         Siguiente
                                     </a>
                                 </li>

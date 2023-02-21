@@ -21,7 +21,7 @@ class Terrenos(LoginRequiredMixin, View):
         manzana = request.GET.get('manzana', None)
 
         if manzana:
-            
+
             manzana = manzana.upper()
 
             terrenos = terrenos.filter(manzana=manzana)
@@ -39,11 +39,16 @@ class Terrenos(LoginRequiredMixin, View):
             lote = lote.upper()
 
             terrenos = terrenos.filter(lote=lote)
-        
+
         paginator = Paginator(terrenos, 25)
 
         page_number = request.GET.get('page')
 
         page_obj = paginator.get_page(page_number)
 
-        return render(request, 'cementerio/terrenos/terrenos.html', {'page_obj': page_obj})
+        return render(request, 'cementerio/terrenos/terrenos.html', {
+            'page_obj': page_obj,
+            'manzana': manzana,
+            'columna': columna,
+            'lote': lote,
+        })

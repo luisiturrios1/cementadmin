@@ -19,19 +19,22 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label for="manzana">Manzana</label>
-                                                <input type="text" class="form-control" name="manzana" placeholder="Manzana">
+                                                <input type="text" class="form-control" name="manzana" placeholder="Manzana"
+                                                    value="{{ manzana | default:'' }}">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label for="columna">Columna</label>
-                                                <input type="text" class="form-control" name="columna" placeholder="Columna">
+                                                <input type="text" class="form-control" name="columna" placeholder="Columna"
+                                                    value="{{ columna | default:'' }}">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label for="lote">Lote</label>
-                                                <input type="text" class="form-control" name="lote" placeholder="Lote">
+                                                <input type="text" class="form-control" name="lote" placeholder="Lote"
+                                                value="{{ lote | default:'' }}">
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +88,7 @@
                                 <ul class="pagination">
                                     {% if page_obj.has_previous %}
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}&lote={{ lote | default:'' | urlencode }}&columna={{ columna | default:'' | urlencode }}&manzana={{ manzana | default:'' | urlencode }}">
                                             Anterior
                                         </a>
                                     </li>
@@ -94,18 +97,18 @@
                                     </li>
                                     {% endif %}
                                     <li class="page-item active" aria-current="page">
-                                        <a class="page-link" href="?page={{ page_obj.number }}">
+                                        <a class="page-link" href="?page={{ page_obj.number }}&lote={{ lote | default:'' | urlencode }}&columna={{ columna | default:'' | urlencode }}&manzana={{ manzana | default:'' | urlencode }}">
                                             {{ page_obj.number }}
                                         </a>
                                     </li>
                                     {% if page_obj.has_next %}
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ page_obj.num_pages }}">
+                                        <a class="page-link" href="?page={{ page_obj.num_pages }}&lote={{ lote | default:'' | urlencode }}&columna={{ columna | default:'' | urlencode }}&manzana={{ manzana | default:'' | urlencode }}">
                                             {{ page_obj.paginator.num_pages }}
                                         </a>
                                     </li>
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}&lote={{ lote | default:'' | urlencode }}&columna={{ columna | default:'' | urlencode }}&manzana={{ manzana | default:'' | urlencode }}">
                                             Siguiente
                                         </a>
                                     </li>

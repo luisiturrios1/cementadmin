@@ -20,7 +20,7 @@ class Difuntos(LoginRequiredMixin, View):
         q = request.GET.get('q', None)
 
         if q == None:
-            
+
             difuntos = Difunto.objects.filter(site=current_site)
 
         else:
@@ -37,4 +37,4 @@ class Difuntos(LoginRequiredMixin, View):
 
         page_obj = paginator.get_page(page_number)
 
-        return render(request, 'cementerio/difuntos/difuntos.html', {'page_obj': page_obj})
+        return render(request, 'cementerio/difuntos/difuntos.html', {'page_obj': page_obj, 'q': q})
