@@ -6,6 +6,7 @@ import os
 from django.contrib.auth import get_user_model
 from django.contrib.sites.models import Site
 from django.db import models
+from django.db.models.functions import Cast
 from django.urls import reverse
 
 
@@ -67,7 +68,11 @@ class Terreno(models.Model):
     )
 
     class Meta:
-        ordering = ['manzana', 'columna', 'lote']
+        ordering = [
+            'manzana',
+            'columna',
+            Cast("lote", output_field=models.IntegerField()),
+        ]
 
     def __str__(self):
 
