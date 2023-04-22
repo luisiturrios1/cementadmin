@@ -9,4 +9,7 @@ pycurl==7.45.1
 pytz==2022.6
 tablib==3.2.1
 whitenoise==6.2.0
-newrelic
+newrelic==8.8.0
+django-elasticsearch-dsl==7.3
+elasticsearch==7.17.9
+elasticsearch-dsl==7.4.1

@@ -7,7 +7,9 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render
 from django.views import View
+from elasticsearch_dsl import Q
 
+from cementerio.documents import ClienteDocument
 from cementerio.models import Cliente
 
 
@@ -17,9 +19,9 @@ class Clientes(LoginRequiredMixin, View):
 
         current_site = get_current_site(request)
 
-        q = request.GET.get('q', None)
+        q = request.GET.get('q', '')
 
-        if q == None:
+        if q == '':
 
             clientes = Cliente.objects.filter(site=current_site)
 
@@ -27,9 +29,12 @@ class Clientes(LoginRequiredMixin, View):
 
             q = q.upper()
 
-            clientes = Cliente.objects.filter(site=current_site).filter(
-                Q(nombre__icontains=q) | Q(apellido__icontains=q)
-            )
+            query = Q("match", nombre={"query": q, "fuzziness": "2"}) | \
+                Q("match", apellido={"query": q, "fuzziness": "2"})
+
+            clientes = ClienteDocument.search().query(query)
+
+            clientes = clientes.to_queryset()
 
         paginator = Paginator(clientes, 25)
 
