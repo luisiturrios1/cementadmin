@@ -218,6 +218,6 @@ else:
 ELASTICSEARCH_DSL={
     'default': {
         'hosts': elasticsearch_host,
-        'verify_certs': False
+        'verify_certs': IS_HEROKU
     },
 }
