@@ -32,7 +32,8 @@ class Clientes(LoginRequiredMixin, View):
             query = Q("match", nombre={"query": q, "fuzziness": "2"}) | \
                 Q("match", apellido={"query": q, "fuzziness": "2"})
 
-            clientes = ClienteDocument.search().query(query).to_queryset()
+            clientes = ClienteDocument.search().query(
+                query).to_queryset().filter(site=current_site)
 
         paginator = Paginator(clientes, 25)
 

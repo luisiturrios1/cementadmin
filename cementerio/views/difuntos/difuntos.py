@@ -32,7 +32,8 @@ class Difuntos(LoginRequiredMixin, View):
             query = Q("match", nombre={"query": q, "fuzziness": "2"}) | \
                 Q("match", apellido={"query": q, "fuzziness": "2"})
 
-            difuntos = DifuntoDocument.search().query(query).to_queryset()
+            difuntos = DifuntoDocument.search().query(
+                query).to_queryset().filter(site=current_site)
 
         paginator = Paginator(difuntos, 25)
 
