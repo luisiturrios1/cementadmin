@@ -29,11 +29,15 @@ class Clientes(LoginRequiredMixin, View):
 
             q = q.upper()
 
-            query = Q("match", nombre={"query": q, "fuzziness": "2"}) | \
-                Q("match", apellido={"query": q, "fuzziness": "2"})
+            clientes = Cliente.objects.filter(site=current_site).filter(
+                Q(nombre__icontains=q) | Q(apellido__icontains=q)
+            )
 
-            clientes = ClienteDocument.search().query(
-                query).to_queryset().filter(site=current_site)
+            # query = Q("match", nombre={"query": q, "fuzziness": "2"}) | \
+            #     Q("match", apellido={"query": q, "fuzziness": "2"})
+
+            # clientes = ClienteDocument.search().query(
+            #     query).to_queryset().filter(site=current_site)
 
         paginator = Paginator(clientes, 25)
 

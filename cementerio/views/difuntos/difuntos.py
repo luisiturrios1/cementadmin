@@ -29,11 +29,15 @@ class Difuntos(LoginRequiredMixin, View):
 
             q = q.upper()
 
-            query = Q("match", nombre={"query": q, "fuzziness": "2"}) | \
-                Q("match", apellido={"query": q, "fuzziness": "2"})
+            difuntos = Difunto.objects.filter(site=current_site).filter(
+                Q(nombre__icontains=q) | Q(apellido__icontains=q)
+            )
 
-            difuntos = DifuntoDocument.search().query(
-                query).to_queryset().filter(site=current_site)
+            # query = Q("match", nombre={"query": q, "fuzziness": "2"}) | \
+            #     Q("match", apellido={"query": q, "fuzziness": "2"})
+
+            # difuntos = DifuntoDocument.search().query(
+            #     query).to_queryset().filter(site=current_site)
 
         paginator = Paginator(difuntos, 25)
 
