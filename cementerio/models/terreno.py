@@ -35,7 +35,7 @@ class Terreno(models.Model):
 
     manzana = models.CharField(max_length=20, null=False, blank=False)
 
-    columna = models.PositiveIntegerField(null=True, blank=True, default=None)
+    columna = models.CharField(max_length=20, null=True, blank=True)
 
     lote = models.CharField(max_length=20, null=True, blank=True)
 
