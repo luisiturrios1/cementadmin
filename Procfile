@@ -1,1 +1,1 @@
-web: newrelic-admin run-program gunicorn cementadmin.wsgi
+web: gunicorn cementadmin.wsgi
