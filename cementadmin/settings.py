@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'django_elasticsearch_dsl',
     'import_export',
     'bootstrap3',
     'cementerio',
@@ -209,15 +208,3 @@ for admin in admins:
     ADMINS.append((admin, admin)) if admin != '' else None
 
 CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1:5000')]
-
-if IS_HEROKU:
-    elasticsearch_host = os.getenv('BONSAI_URL')
-else:
-    elasticsearch_host = 'https://elastic:changeme@127.0.0.1:9200'
-
-ELASTICSEARCH_DSL={
-    'default': {
-        'hosts': elasticsearch_host,
-        'verify_certs': IS_HEROKU
-    },
-}

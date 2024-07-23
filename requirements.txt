@@ -10,6 +10,3 @@ pytz==2022.6
 tablib==3.2.1
 whitenoise==6.2.0
 newrelic==8.8.0
-django-elasticsearch-dsl==7.3
-elasticsearch==7.13.4
-elasticsearch-dsl==7.4.1
