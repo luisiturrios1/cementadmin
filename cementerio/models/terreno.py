@@ -71,7 +71,7 @@ class Terreno(models.Model):
         ordering = [
             'manzana',
             'columna',
-            Cast("lote", output_field=models.IntegerField()),
+            "lote",
         ]
 
     def __str__(self):
